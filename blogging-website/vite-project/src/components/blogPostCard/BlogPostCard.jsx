@@ -84,8 +84,8 @@ function BlogPostCard() {
           </div>
 
           {/* See More Button  */}
-          <Link to={'/allblogs'}>
           <div className="flex justify-center my-5">
+            <Link to={'/allblogs'}>
             <Button
               style={{
                 background: mode === 'dark'
@@ -98,8 +98,8 @@ function BlogPostCard() {
               }}>
               See More
             </Button>
-          </div>
           </Link>
+          </div>
         </div>
       </section >
     </div >

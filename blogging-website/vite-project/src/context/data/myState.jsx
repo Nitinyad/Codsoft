@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MyContext from './myContext';
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
-import { fireDB} from '../../firebase/FirebaseConfig';
+import { fireDB } from '../../firebase/FirebaseConfig';
 import toast from 'react-hot-toast';
 
 function MyState(props) {
@@ -17,12 +17,16 @@ function MyState(props) {
         }
     }
 
-    const [searchkey, setSearchkey] = useState('')
+    //* search state
+    const [searchkey, setSearchkey] = useState('');
+
+    //* loading state
     const [loading, setloading] = useState(false);
 
+    //* getAllBlog State 
     const [getAllBlog, setGetAllBlog] = useState([]);
 
-
+    //* getAllBlogs Function
     function getAllBlogs() {
         setloading(true);
         try {
@@ -35,11 +39,10 @@ function MyState(props) {
                 QuerySnapshot.forEach((doc) => {
                     blogArray.push({ ...doc.data(), id: doc.id });
                 });
-                
+
                 setGetAllBlog(blogArray)
-                // console.log(productsArray)   
-                         setloading(false)
-    
+                console.log(blogArray)
+                setloading(false)
             });
             return () => data;
         } catch (error) {
@@ -49,9 +52,8 @@ function MyState(props) {
     }
 
     useEffect(() => {
-        getAllBlogs()
-    
-    }, [getAllBlog]);
+        getAllBlogs();
+    }, []);
 
     // Blog Delete Function 
     const deleteBlogs = async (id) => {
@@ -63,18 +65,17 @@ function MyState(props) {
             console.log(error)
         }
     }
-    
     return (
-        <MyContext.Provider value={{ 
-            mode, 
+        <MyContext.Provider value={{
+            mode,
             toggleMode,
             searchkey,
             setSearchkey,
             loading,
             setloading,
-            getAllBlog ,
+            getAllBlog,
             deleteBlogs
-            }}>
+        }}>
             {props.children}
         </MyContext.Provider>
     )
