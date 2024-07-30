@@ -10,10 +10,13 @@ function MyState(props) {
         if (mode === 'light') {
             setMode('dark');
             document.body.style.backgroundColor = 'rgb(17, 24, 39)';
+            document.body.style.color = 'white';
+            
         }
         else {
             setMode('light');
             document.body.style.backgroundColor = 'white';
+            document.body.style.color = 'black';
         }
     }
 
